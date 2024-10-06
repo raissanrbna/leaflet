@@ -21,25 +21,31 @@ export class HomePage {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
-
     const baseMaps = {
-      'OpenStreetMap' : L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      'OpenStreetMap': L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }),
 
-      'Stadia' : L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      'Stadia': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
       }),
 
-      'Terain Layer' : L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+      'Light Grey': L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>'
+      }),
+
+      'Terain Layer': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://opentopomap.org/copyright">OpenTopoMap</a>',
+
+      }),
+      'World Street Map': L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+        attribution:
+          'Tiles &copy; Esri | <a href="Latihan WebGIS" target="_blank">DIVSIG UGM</a>',
       })
     };
-    L.control.layers(baseMaps).addTo(this.map);
 
+    L.control.layers(baseMaps).addTo(this.map);
 
     // Menambahkan custom icon marker
     const customIcon = L.icon({
@@ -54,8 +60,16 @@ export class HomePage {
     marker1.bindPopup('Graha Saba Pramana').openPopup();
 
     // Marker 2
+
     const marker2 = L.marker([-7.781713136021527, 110.36705792417953], { icon: customIcon }).addTo(this.map);
-    marker2.bindPopup('Monumen Tugu Jogja').openPopup();
+    marker2.bindPopup(`
+    <div>
+     <div style="text-align: center;">
+        <p>Monumen Tugu Jogja</p>
+        <img src="assets/tugu.jpeg" alt="Tugu Jogja" style="width:100px; height:100x;">
+    </div>
+`).openPopup();
+
 
     // Marker 3
     const marker3 = L.marker([-7.77398833783402, 110.37453634219474], { icon: customIcon }).addTo(this.map);
